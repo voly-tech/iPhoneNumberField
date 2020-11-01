@@ -270,18 +270,20 @@ public extension iPhoneNumberTextField {
         var view = self
         view.autofillPrefix = showPrefix
         
-        func myFunc(completion: UIViewType) -> () {
-            print("hi")
-            // If autofill is true prepend the country code
-            if showPrefix == true {
-                view.text += "+1"
-                print("Faffle1")
-            }
+        func prependFunc(completion: UIViewType) -> () {
+            prependCountryCode(showPrefix)
         }
 
-        view.onBeginEditingHandler = myFunc
+        view.onBeginEditingHandler = prependFunc
         
         return view
+    }
+    
+    private func prependCountryCode(_ add: Bool) -> () {
+        // If autofill is true prepend the country code
+        if add == true {
+            self.text += "+1"
+        }
     }
     
     /// Modifies whether the text field is **disabled**. ✋
@@ -301,17 +303,14 @@ public extension iPhoneNumberTextField {
         
         if let action = action {
             
-            func myFunc(completion: UIViewType) -> () {
-                // If autofill is true prepend the country code
-                if view.autofillPrefix == true {
-                    view.text += "+1"
-                    print("Faffle2")
-                }
-                
+            func completeAction(completion: UIViewType) -> () {
+                // First check if we should prefill the textfield
+                prependCountryCode(self.autofillPrefix)
+                // Then add the user's action
                 action(completion)
             }
             
-            view.onBeginEditingHandler = myFunc
+            view.onBeginEditingHandler = completeAction
         }
         return view
     }
