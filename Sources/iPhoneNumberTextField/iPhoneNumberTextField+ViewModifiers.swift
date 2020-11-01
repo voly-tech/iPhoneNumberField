@@ -282,6 +282,10 @@ public extension iPhoneNumberTextField {
     private func prependCountryCode(_ add: Bool) -> () {
         // If autofill is true prepend the country code
         if add == true {
+            // MARK: TODO
+            // However you do it, just replace this "+1" with the currently selected countryCode
+            // The currentCountry code is a get property in PhoneNumberTextField
+            // Good luck
             self.text += "+1"
         }
     }

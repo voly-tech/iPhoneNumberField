@@ -71,6 +71,9 @@ public struct iPhoneNumberTextField: UIViewRepresentable {
 
     /// The style of the `UITextField`.
     internal var borderStyle: UITextField.BorderStyle = .none
+    
+    /// The current country code
+    internal var countryCode: String?
 
     /// The textField invokes this closure when it became the first responder.
     internal var onBeginEditingHandler = { (view: PhoneNumberTextField) in }
@@ -100,7 +103,7 @@ public struct iPhoneNumberTextField: UIViewRepresentable {
     
     /// Whether the textField clears on insertion.
     internal var clearsOnInsertion = false
-    
+
     /// Whether the user can interact with the textField
     internal var isUserInteractionEnabled = true
 
@@ -141,7 +144,8 @@ public struct iPhoneNumberTextField: UIViewRepresentable {
         uiView.withFlag = showFlag
         uiView.withDefaultPickerUI = selectableFlag
         uiView.withPrefix = autofillPrefix
-        uiView.tintColor = accentColor
+
+//        updateCountryCode(countryCodeInteger: Int(uiView.phoneNumberKit.countryCode(for: uiView.currentRegion)))
 
         if let numberPlaceholderColor = numberPlaceholderColor {
             uiView.numberPlaceholderColor = numberPlaceholderColor
@@ -159,7 +163,8 @@ public struct iPhoneNumberTextField: UIViewRepresentable {
             uiView.resignFirstResponder()
         }
     }
-
+    
+    
     public func makeCoordinator() -> Coordinator {
         Coordinator(text: $text,
                     isFirstResponder: externalIsFirstResponder ?? $internalIsFirstResponder,
@@ -198,6 +203,7 @@ public struct iPhoneNumberTextField: UIViewRepresentable {
         var onEndEditing = { (view: PhoneNumberTextField) in }
         var onClear = { (view: PhoneNumberTextField) in }
         var onReturn = { (view: PhoneNumberTextField) in }
+        
 
         @objc public func textViewDidChange(_ textField: UITextField) {
             guard let textField = textField as? PhoneNumberTextField else { return assertionFailure("Undefined state") }
