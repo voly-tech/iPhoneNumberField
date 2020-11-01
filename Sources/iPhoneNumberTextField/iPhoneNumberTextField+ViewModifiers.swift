@@ -270,16 +270,16 @@ public extension iPhoneNumberTextField {
         var view = self
         view.autofillPrefix = showPrefix
         
-//        func myFunc(completion: UIViewType) -> () {
-//            print("hi")
-//            // If autofill is true prepend the country code
-//            if showPrefix == true {
-//                view.text += "+1"
-//                print("Faffle1")
-//            }
-//        }
-//
-//        view.onBeginEditingHandler = myFunc
+        func myFunc(completion: UIViewType) -> () {
+            print("hi")
+            // If autofill is true prepend the country code
+            if showPrefix == true {
+                view.text += "+1"
+                print("Faffle1")
+            }
+        }
+
+        view.onBeginEditingHandler = myFunc
         
         return view
     }
@@ -311,7 +311,7 @@ public extension iPhoneNumberTextField {
                 action(completion)
             }
             
-            view.onBeginEditingHandler = action
+            view.onBeginEditingHandler = myFunc
         }
         return view
     }
