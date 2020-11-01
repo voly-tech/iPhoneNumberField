@@ -145,6 +145,8 @@ public struct iPhoneNumberTextField: UIViewRepresentable {
         uiView.withDefaultPickerUI = selectableFlag
         uiView.withPrefix = autofillPrefix
 
+//        MARK: DEBUG
+//        This code retrieves the current country code. I thought it'd be helpful
 //        updateCountryCode(countryCodeInteger: Int(uiView.phoneNumberKit.countryCode(for: uiView.currentRegion)))
 
         if let numberPlaceholderColor = numberPlaceholderColor {
