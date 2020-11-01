@@ -269,6 +269,18 @@ public extension iPhoneNumberTextField {
     func showPrefix(_ showPrefix: Bool) -> Self {
         var view = self
         view.autofillPrefix = showPrefix
+        
+//        func myFunc(completion: UIViewType) -> () {
+//            print("hi")
+//            // If autofill is true prepend the country code
+//            if showPrefix == true {
+//                view.text += "+1"
+//                print("Faffle1")
+//            }
+//        }
+//
+//        view.onBeginEditingHandler = myFunc
+        
         return view
     }
     
@@ -286,11 +298,25 @@ public extension iPhoneNumberTextField {
     /// - Returns: An updated text field using the desired function called when text editing begins ➡️
     func onBeginEditing(perform action: ((UIViewType) -> ())? = nil) -> Self {
         var view = self
+        
         if let action = action {
+            
+            func myFunc(completion: UIViewType) -> () {
+                // If autofill is true prepend the country code
+                if view.autofillPrefix == true {
+                    view.text += "+1"
+                    print("Faffle2")
+                }
+                
+                action(completion)
+            }
+            
             view.onBeginEditingHandler = action
         }
         return view
     }
+    
+    
 
     /// Modifies the function called when the user makes any **changes** to the text in the text field. 💬
     /// - Parameter action: The action to perform. If `action` is `nil`, the call has no effect.

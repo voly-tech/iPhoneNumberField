@@ -152,7 +152,7 @@ public struct iPhoneNumberTextField: UIViewRepresentable {
         if let textAlignment = textAlignment {
             uiView.textAlignment = textAlignment
         }
-
+        
         if isFirstResponder {
             uiView.becomeFirstResponder()
         } else {
