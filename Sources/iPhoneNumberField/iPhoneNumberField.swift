@@ -165,7 +165,7 @@ public struct iPhoneNumberField: UIViewRepresentable {
     public func updateUIView(_ uiView: PhoneNumberTextField, context: UIViewRepresentableContext<Self>) {
         configuration(uiView)
         
-        uiView.text = displayedText
+//        uiView.text = displayedText
         uiView.font = font
         uiView.maxDigits = maxDigits
         uiView.clearButtonMode = clearButtonMode
@@ -176,9 +176,9 @@ public struct iPhoneNumberField: UIViewRepresentable {
         uiView.withDefaultPickerUI = selectableFlag
         uiView.withPrefix = previewPrefix
         uiView.withExamplePlaceholder = autofillPrefix || placeholder == nil
-        // if autofillPrefix { uiView.resignFirstResponder() } // Workaround touch autofill issue
+//         if autofillPrefix { uiView.resignFirstResponder() } // Workaround touch autofill issue
         uiView.tintColor = accentColor
-        
+
         if let defaultRegion = defaultRegion {
             uiView.partialFormatter.defaultRegion = defaultRegion
         }
@@ -193,9 +193,9 @@ public struct iPhoneNumberField: UIViewRepresentable {
         }
 
         if isFirstResponder {
-            uiView.becomeFirstResponder()
+//            uiView.becomeFirstResponder()
         } else {
-            uiView.resignFirstResponder()
+//            uiView.resignFirstResponder()
         }
     }
 
